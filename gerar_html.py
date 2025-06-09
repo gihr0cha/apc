@@ -9,6 +9,7 @@ def criar_html(letra, lista_palavras):
     body {{ background-color: #57a1f8; font-family: Arial, sans-serif; padding: 30px; }}
     h1 {{ text-align: center; color: #333; }}
     .palavra {{ background: #fbb6c2; margin: 15px 0; padding: 15px; border-radius: 10px; }}
+    .palavra:hover {{ background: #f8c3d4;}}
     .palavra strong {{ font-size: 20px; color: #000; }}
     .palavra p {{ margin: 5px 0 0; color: #333; }}
   </style>
