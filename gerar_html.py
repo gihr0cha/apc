@@ -1,66 +1,71 @@
-palavras = [
-    ("Água", "Substância líquida essencial para a vida e presente em rios lagos e oceanos"),
-    ("Ar", "Bem natural indispensável para a respiração dos seres vivos"),
-    ("Amazônia", "Floresta tropical considerada o pulmão do mundo devido à sua biodiversidade"),
-    ("Aquecimento Global", "Aumento da temperatura média do planeta devido à ação humana"),
-    ("Agroecologia", "Ciência que estuda formas sustentáveis de cultivo e produção agrícola"),
-    ("Avaliação Ambiental", "Processo de análise dos impactos ambientais de um projeto ou atividade"),
-    ("Área de Preservação", "Espaço natural protegido para conservação da biodiversidade"),
-    ("Aterro Sanitário", "Local destinado ao descarte controlado de resíduos sólidos"),
-    ("Atmosfera", "Camada de gases que envolve a Terra essencial para a regulação climática"),
-]
-
-html = '''
+def criar_html(letra, lista_palavras):
+  html = f'''
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Palavras de A a C</title>
+  <title>Palavras com {letra}</title>
   <style>
-    body {
-      background-color: #f0f8ff;
-      font-family: Arial, sans-serif;
-      padding: 30px;
-    }
-    h1 {
-      text-align: center;
-      color: #333;
-    }
-    .palavra {
-      background: #fbb6c2;
-      margin: 15px 0;
-      padding: 15px 20px;
-      border-radius: 10px;
-    }
-    .palavra strong {
-      font-size: 20px;
-      color: #000;
-    }
-    .palavra p {
-      margin: 5px 0 0;
-      color: #333;
-    }
+    body {{ background-color: #57a1f8; font-family: Arial, sans-serif; padding: 30px; }}
+    h1 {{ text-align: center; color: #333; }}
+    .palavra {{ background: #fbb6c2; margin: 15px 0; padding: 15px; border-radius: 10px; }}
+    .palavra strong {{ font-size: 20px; color: #000; }}
+    .palavra p {{ margin: 5px 0 0; color: #333; }}
   </style>
 </head>
 <body>
-  <div id="lista-palavras">
+  <h1>Palavras com {letra.upper()}</h1>
 '''
 
-for palavra, significado in palavras:
-    html += f'''
-    <div class="palavra">
-      <strong>{palavra}</strong>
-      <p>{significado}</p>
-    </div>
-    '''
-
-html += '''
+  for palavra, significado in lista_palavras:
+        html += f'''
+  <div class="palavra">
+    <strong>{palavra}</strong>
+    <p>{significado}</p>
   </div>
+'''
+
+  html += '''
 </body>
 </html>
 '''
 
-with open("pagina_a-c.html", "w", encoding="utf-8") as f:
-    f.write(html)
+  with open(f"pagina_{letra.lower()}.html", "w", encoding="utf-8") as f:
+        f.write(html)
+  print(f"Arquivo 'pagina_{letra.lower()}.html' criado com sucesso!")
 
-print("Arquivo 'pagina_a-c.html' criado com sucesso!")
+# essa função vai ser o arquivo csv que a gente vai colocar as palavras e os significados
+def ler_palavras(palavras):
+    lista = []
+    with open(palavras, "r", encoding="utf-8") as f:
+        linhas = f.readlines()
+        # esse for ta lendo as linhas do e dividindo as palavras e os significados
+        for linha in linhas[1:]:
+            parte = linha.strip().split(",")
+            if len(parte) == 2:
+                palavra = parte[0].strip()
+                significado = parte[1].strip()
+                lista.append((palavra, significado))
+    return lista
+# isso aqui é para pegar a primeira letra da palavra e deixar maiúscula e tirar os acentos
+def primeira_letra(palavra):
+    letra = palavra[0].upper()
+    if letra == "Á":
+        return "A"
+    else:
+        return letra
+
+palavras = ler_palavras("palavras.csv")
+
+letras = {}  # dicionário simples
+for palavra, significado in palavras:
+    letra = primeira_letra(palavra)
+    if letra in letras:
+        letras[letra].append((palavra, significado))
+    else:
+        letras[letra] = [(palavra, significado)]
+
+# Gera um arquivo HTML para cada letra
+for letra in letras:
+    criar_html(letra, letras[letra])
+
