@@ -65,3 +65,26 @@ for palavra, significado in palavras:
 for letra in letras:
     criar_html(letra, letras[letra])
 
+def criar_html_significado (palavra, significado):
+    html = f'''<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="estilo.css">
+  <title>{palavra.capitalize()}</title>
+</head>
+<body>
+  <div class="significado">
+  <h1>{palavra.capitalize()}</h1>
+  <p> Definição: {significado}</p>
+  </div>
+</body>
+</html>
+'''
+
+    with open(f"{palavra.lower()}.html", "w", encoding="utf-8") as f:
+        f.write(html)
+    print(f"Arquivo '{palavra.lower()}.html' criado com sucesso!")
+
+for palavra, significado in palavras:
+    criar_html_significado(palavra, significado)

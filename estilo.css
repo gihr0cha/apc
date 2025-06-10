@@ -50,3 +50,13 @@ h1 { text-align: center; color: #000; }
     .palavra button:hover {
       transform: scale(1.05);
     }
+
+.significado {
+    background-color: #fbb6c2;
+    padding: 20px;
+    border-radius: 10px;
+      text-align: center;
+      color: #000;
+      font-size: 18px;
+      margin-top: 10px;
+    }
