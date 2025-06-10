@@ -1,0 +1,52 @@
+body {
+      background-color: #57a1f8;
+      font-family: Arial, sans-serif;
+      justify-content: center;
+      align-items: center;
+      gap: 30px;
+      padding: 50px;
+    }
+
+    .button {
+      background-color: #fbb6c2;
+      color: #000;
+      text-align: center;
+      padding: 20px 5px;
+      border-radius: 40px;
+      font-weight: bold;
+      font-size: 20px;
+      text-decoration: none;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+      width: 180px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .button:hover {
+      transform: scale(1.05);
+    }
+
+    .grid {
+      display: grid;
+
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: auto;
+      margin: 20px 20px;
+      justify-content: center;
+      align-items: center;
+    }
+h1 { text-align: center; color: #000; }
+    .palavra {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .palavra button {
+      display: flex;
+    }
+    .palavra button:hover {
+      transform: scale(1.05);
+    }

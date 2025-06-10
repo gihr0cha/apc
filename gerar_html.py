@@ -4,29 +4,24 @@ def criar_html(letra, lista_palavras):
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="estilo.css">
   <title>Palavras com {letra}</title>
-  <style>
-    body {{ background-color: #57a1f8; font-family: Arial, sans-serif; padding: 30px; }}
-    h1 {{ text-align: center; color: #333; }}
-    .palavra {{ background: #fbb6c2; margin: 15px 0; padding: 15px; border-radius: 10px; }}
-    .palavra:hover {{ background: #f8c3d4;}}
-    .palavra strong {{ font-size: 20px; color: #000; }}
-    .palavra p {{ margin: 5px 0 0; color: #333; }}
-  </style>
 </head>
 <body>
   <h1>Palavras com {letra.upper()}</h1>
+
+  <div class="grid">
 '''
 
   for palavra, significado in lista_palavras:
         html += f'''
   <div class="palavra">
-    <strong>{palavra}</strong>
-    <p>{significado}</p>
+    <a href="{palavra.lower()}.html" class="button">{palavra.capitalize()}</a>
   </div>
 '''
 
   html += '''
+  </div>
 </body>
 </html>
 '''
