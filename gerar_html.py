@@ -1,7 +1,7 @@
 # essa função vai ler o arquivo csv que a gente vai colocar as palavras e os significados
 
 def ler_palavras(palavras):
-    lista = []
+    listadepalavras = []
     with open(palavras, "r", encoding="utf-8") as f:
         linhas = f.readlines()
         # esse for ta lendo as linhas do e dividindo as palavras e os significados em tuplas, sabe aql role das virgulas?
@@ -11,8 +11,8 @@ def ler_palavras(palavras):
             if len(parte) == 2:
                 palavra = parte[0].strip()
                 significado = parte[1].strip()
-                lista.append((palavra, significado))
-    return lista
+                listadepalavras.append((palavra, significado))
+    return listadepalavras
 # isso aqui é para pegar a primeira letra da palavra e deixar maiúscula e tirar os acentos, quando a gente for add palavras que começam com acento tem que ir adicionando aqui para não criar um arquivo com a letra errada
 def primeira_letra(palavra):
     letra = palavra[0].upper()
@@ -21,11 +21,11 @@ def primeira_letra(palavra):
     else:
         return letra
 
-palavras = ler_palavras("palavras.csv") # aqui a gente chama a função que leu o arquivo csv e coloca as palavras e os significados na lista
+listadepalavras = ler_palavras("palavras.csv") # aqui a gente chama a função que leu o arquivo csv e coloca as palavras e os significados na listadepalavras
 
 letras = {}  # aqui a gente cria um dicionário para armazenar as palavras por letra
-# esse for ta percorrendo a lista de palavras e significados e colocando as palavras no dicionário de acordo com a primeira letra
-for palavra, significado in palavras:
+# esse for ta percorrendo a listadepalavras de palavras e significados e colocando as palavras no dicionário de acordo com a primeira letra
+for palavra, significado in listadepalavras:
     letra = primeira_letra(palavra)
     if letra in letras:
         letras[letra].append((palavra, significado))
@@ -33,7 +33,7 @@ for palavra, significado in palavras:
         letras[letra] = [(palavra, significado)]
 
 # essa função vai criar um arquivo html para cada letra, com as palavras que começam com aquela letra
-def criar_html(letra, lista_palavras):
+def criar_html(letra, listadepalavras_palavras):
   html = f'''
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -48,8 +48,8 @@ def criar_html(letra, lista_palavras):
   <div class="grid">
 '''
 #aqui a gente ta criando um grid para colocar as palavras, cada palavra vai ser um botão que vai levar para uma página com o significado da palavra
-  # esse for ta percorrendo a lista de palavras e criando um botão para cada palavra
-  for palavra, significado in lista_palavras:
+  # esse for ta percorrendo a listadepalavras de palavras e criando um botão para cada palavra
+  for palavra, significado in listadepalavras_palavras:
         html += f'''
   <div class="palavra">
     <a href="{palavra.lower()}.html" class="button">{palavra.capitalize()}</a>
@@ -70,7 +70,7 @@ def criar_html(letra, lista_palavras):
 
 
 
-# aqui a gente ta chamando a função que cria o html para cada letra, passando a letra e a lista de palavras daquela letra
+# aqui a gente ta chamando a função que cria o html para cada letra, passando a letra e a listadepalavras de palavras daquela letra
 
 for letra in letras:
     criar_html(letra, letras[letra])
@@ -97,7 +97,7 @@ def criar_html_significado (palavra, significado):
         f.write(html)
     print(f"Arquivo '{palavra.lower()}.html' criado com sucesso!")
 
-for palavra, significado in palavras:
+for palavra, significado in listadepalavras:
     criar_html_significado(palavra, significado)
 
 # aqui a gente ta criando a primeira pagina do dicionário, que vai ser a página inicial com as letras
