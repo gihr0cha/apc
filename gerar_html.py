@@ -76,7 +76,7 @@ for letra in letras:
     criar_html(letra, letras[letra])
 
 # essa função vai criar um arquivo html para cada palavra, com o significado da palavra
-def criar_html_significado (palavra, significado):
+def criar_html_dicionario(palavra, significado):
     html = f'''<!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -98,7 +98,7 @@ def criar_html_significado (palavra, significado):
     print(f"Arquivo '{palavra.lower()}.html' criado com sucesso!")
 
 for palavra, significado in listadepalavras:
-    criar_html_significado(palavra, significado)
+    criar_html_dicionario(palavra, significado)
 
 # aqui a gente ta criando a primeira pagina do dicionário, que vai ser a página inicial com as letras
 # e os botões para cada letra, que vão levar para as páginas com as palavras daquela letra
