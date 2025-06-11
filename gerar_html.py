@@ -87,8 +87,12 @@ def criar_html_dicionario(palavra, significado):
 <body>
   <div class="significado">
   <h1>{palavra.capitalize()}</h1>
-  <p> Definição: {significado}</p>
+  <p class="ds"> Divisão silábica <p>
+  <p class="def"> Definição: {significado}</p>
   </div>
+  <footer class="fonte">
+  <p>Fonte: <a href="#"> Dicionário de Palavras </a></p>
+  </footer>
 </body>
 </html>
 '''

@@ -37,7 +37,7 @@ body {
       justify-content: center;
       align-items: center;
     }
-h1 { text-align: center; color: #000; }
+h1 { text-align: center; color: #000; margin-bottom: 5px;}
     .palavra {
         display: flex;
         justify-content: center;
@@ -52,6 +52,7 @@ h1 { text-align: center; color: #000; }
     }
 
 .significado {
+  flex: 1;
     background-color: #fbb6c2;
     padding: 20px;
     border-radius: 10px;
@@ -60,3 +61,36 @@ h1 { text-align: center; color: #000; }
       font-size: 18px;
       margin-top: 10px;
     }
+.ds{
+    color : #858585;
+    font-size: 14px;
+    text-align: center;
+    margin: 5px 5px;
+    padding: 2px;
+    font-style: italic;
+}
+.def{
+    color: #000;
+    font-size: 16px;
+    text-align: center;
+    margin: 5px 5px;
+    padding: 2px;
+    font-weight: bold;
+}
+footer {
+    text-align: center;
+    padding: 10px;
+    color: #000;
+    font-size: 14px;
+    margin-top: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+footer a {
+    color: #000;
+    text-decoration: none;
+}
+footer a:hover {
+    text-decoration: underline;
+}
