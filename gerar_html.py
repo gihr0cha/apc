@@ -49,7 +49,7 @@ def criar_html(letra, lista_palavras):
 '''
 #aqui a gente ta criando um grid para colocar as palavras, cada palavra vai ser um botão que vai levar para uma página com o significado da palavra
   # esse for ta percorrendo a lista de palavras e criando um botão para cada palavra
-  for palavra in lista_palavras:
+  for palavra, significado in lista_palavras:
         html += f'''
   <div class="palavra">
     <a href="{palavra.lower()}.html" class="button">{palavra.capitalize()}</a>
