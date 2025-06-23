@@ -1,8 +1,8 @@
-palavra,significado
-Água,Substância líquida essencial para a vida e presente em rios lagos e oceanos
-Ar,Bem natural indispensável para a respiração dos seres vivos
-Amazônia,Floresta tropical considerada o pulmão do mundo devido à sua biodiversidade
-Aquecimento Global,Aumento da temperatura média do planeta devido à ação humana
+palavra,significado,divisão, nomefonte, fonte
+Água,Substância líquida essencial para a vida e presente em rios lagos e oceanos, á-gua, nomefonte, fonte.com.br
+Ar,Bem natural indispensável para a respiração dos seres vivos, ar, nomefonte, fonte.com.br
+Amazônia,Floresta tropical considerada o pulmão do mundo devido à sua biodiversidade, a-ma-zó-nia, nomefonte, fonte.com.br
+Aquecimento Global,Aumento da temperatura média do planeta devido à ação humana, a-que-ci-men-to glo-bal, nomefonte, fonte.com.br
 Agroecologia,Ciência que estuda formas sustentáveis de cultivo e produção agrícola
 Avaliação Ambiental,Processo de análise dos impactos ambientais de um projeto ou atividade
 Área de Preservação,Espaço natural protegido para conservação da biodiversidade
