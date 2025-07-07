@@ -1,38 +1,49 @@
-# essa função vai ler o arquivo csv que a gente vai colocar as palavras e os significados
-
+# Função que lerá o arquivo csv onde serão adicionadas as palavras com seus significados
 def ler_palavras(palavras):
     listadepalavras = []
     with open(palavras, "r", encoding="utf-8") as f:
         linhas = f.readlines()
-        # esse for ta lendo as linhas do e dividindo as palavras e os significados em tuplas, sabe aql role das virgulas?
-        for linha in linhas[1:]: # ta começando no 1 e não no 0 porque a primeira linha é o cabeçalho
-            # aqui ta tirando os espaços em branco e dividindo a linha em duas partes, a palavra e o significado
+        # esse for lê as linhas do CSV e divide as palavras e os significados em tuplas.
+        for linha in linhas[1:]: # Começa no 1 e não no 0 porque a primeira linha é o cabeçalho.
+            # aqui retira os espaços em branco e divide a linha em quatro partes, a palavra, divisão silábica, significado e fonte.
             parte = linha.strip().split(",")
-            if len(parte) == 2:
+            if len(parte) == 4:
                 palavra = parte[0].strip()
-                significado = parte[1].strip()
-                listadepalavras.append((palavra, significado))
+                divisao = parte[1].strip()
+                significado = parte[2].strip()
+                fonte = parte[3].strip()
+                listadepalavras.append((palavra, divisao, significado, fonte))
     return listadepalavras
-# isso aqui é para pegar a primeira letra da palavra e deixar maiúscula e tirar os acentos, quando a gente for add palavras que começam com acento tem que ir adicionando aqui para não criar um arquivo com a letra errada
+# Tratamento de strings para retirar acentos e padronizar entradas.
 def primeira_letra(palavra):
     letra = palavra[0].upper()
     if letra == "Á":
         return "A"
+    elif letra == "À":
+        return "A"
+    elif letra == "É":
+        return "E"
+    elif letra == "Í":
+        return "I"
+    elif letra == "Ó":
+        return "O"
+    elif letra == "Ú":
+        return "U"
     else:
         return letra
 
-listadepalavras = ler_palavras("palavras.csv") # aqui a gente chama a função que leu o arquivo csv e coloca as palavras e os significados na listadepalavras
+listadepalavras = ler_palavras("palavras.csv") # Chamada da função que lê o arquivo csv e coloca as palavras e os significados na listadepalavras
 
-letras = {}  # aqui a gente cria um dicionário para armazenar as palavras por letra
-# esse for ta percorrendo a listadepalavras de palavras e significados e colocando as palavras no dicionário de acordo com a primeira letra
-for palavra, significado in listadepalavras:
+letras = {}  # Criação de um dicionário para armazenar as palavras por letra
+# Esse for percorre a listadepalavras, divisão, significados e fontes, atribuindo palavras às letras do dicionário de acordo com a primeira letra e, caso esta ainda não exista, a adiciona.
+for palavra, divisao, significado, fonte in listadepalavras:
     letra = primeira_letra(palavra)
     if letra in letras:
-        letras[letra].append((palavra, significado))
+        letras[letra].append((palavra, divisao, significado, fonte))
     else:
-        letras[letra] = [(palavra, significado)]
+        letras[letra] = [(palavra, divisao, significado, fonte)]
 
-# essa função vai criar um arquivo html para cada letra, com as palavras que começam com aquela letra
+# Função para criar um arquivo html para cada letra, com as palavras que começam com aquela letra
 def criar_html(letra, listadepalavras_palavras):
   html = f'''
 <!DOCTYPE html>
@@ -44,16 +55,16 @@ def criar_html(letra, listadepalavras_palavras):
 </head>
 <body>
   <h1>Palavras com {letra.upper()}</h1>
-
   <div class="grid">
 '''
-#aqui a gente ta criando um grid para colocar as palavras, cada palavra vai ser um botão que vai levar para uma página com o significado da palavra
-  # esse for ta percorrendo a listadepalavras de palavras e criando um botão para cada palavra
-  for palavra, significado in listadepalavras_palavras:
+
+#aqui há a criação de um grid para colocar as palavras, cada palavra torna-se um botão que leva para uma página com seu significado
+  # esse for percorre a listadepalavras e cria um botão para cada palavra
+  for palavra, divisao, significado, fonte in listadepalavras_palavras:
         html += f'''
-  <div class="palavra">
-    <a href="{palavra.lower()}.html" class="button">{palavra.capitalize()}</a>
-  </div>
+<div class="palavra">
+  <a href="{palavra.lower()}.html" class="button">{palavra.capitalize()}</a>
+</div>
 '''
 
   html += '''
@@ -61,22 +72,18 @@ def criar_html(letra, listadepalavras_palavras):
 </body>
 </html>
 '''
-# aqui a gente ta criando o arquivo html com o nome da letra, tipo, pagina_a.html, pagina_b.html...
+# Criação do arquivo html com o nome da letra, tipo, pagina_a.html, pagina_b.html...
   with open(f"pagina_{letra.lower()}.html", "w", encoding="utf-8") as f:
         f.write(html)
   print(f"Arquivo 'pagina_{letra.lower()}.html' criado com sucesso!")
 
 
-
-
-
-# aqui a gente ta chamando a função que cria o html para cada letra, passando a letra e a listadepalavras de palavras daquela letra
-
+# Chamada da função que cria o html para cada letra, passando a letra e a listadepalavras daquela letra
 for letra in letras:
     criar_html(letra, letras[letra])
 
-# essa função vai criar um arquivo html para cada palavra, com o significado da palavra
-def criar_html_dicionario(palavra, significado):
+# Função que cria um arquivo html para cada palavra junto à sua divisão, significado e fonte.
+def criar_html_dicionario(palavra, divisao, significado, fonte):
     html = f'''<!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -87,25 +94,20 @@ def criar_html_dicionario(palavra, significado):
 <body>
   <div class="significado">
   <h1>{palavra.capitalize()}</h1>
-  <p class="ds"> Divisão silábica <p>
+  <p class="ds"> Divisão silábica: {divisao} </p>
   <p class="def"> Definição: {significado}</p>
   </div>
   <footer class="fonte">
-  <p>Fonte: <a href="#"> Dicionário de Palavras </a></p>
+  <p>Fonte: <a href="https://{fonte}" target="_blank">{fonte}</a></p>
   </footer>
 </body>
 </html>
 '''
-# aqui a gente ta criando o arquivo html com o nome da palavra, tipo, agua.html
     with open(f"{palavra.lower()}.html", "w", encoding="utf-8") as f:
         f.write(html)
     print(f"Arquivo '{palavra.lower()}.html' criado com sucesso!")
 
-for palavra, significado in listadepalavras:
-    criar_html_dicionario(palavra, significado)
-
-# aqui a gente ta criando a primeira pagina do dicionário, que vai ser a página inicial com as letras
-# e os botões para cada letra, que vão levar para as páginas com as palavras daquela letra
+# Criação da Homepage do dicionário, com os botões para cada letra que levam aos respectivos significados
 def criar_index_html(letras_disponiveis):
     html = '''<!DOCTYPE html>
 <html lang="pt-br">
@@ -118,7 +120,7 @@ def criar_index_html(letras_disponiveis):
   <h1>Dicionário de Palavras</h1>
   <div class="grid"> 
 '''
-#esse sorted aqui ta ordenando as letras em ordem alfabética e depois ta pasando cada letra para a variável letra, que vai ser usada para criar os botões
+# Ordenação de letras em ordem alfabética e atribuição das letras às suas variáveis para criação dos botões
     for letra in sorted(letras_disponiveis):
         html += f'''
     <div class="letra">
@@ -134,8 +136,8 @@ def criar_index_html(letras_disponiveis):
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(html)
     print("Arquivo 'index.html' criado com sucesso!")
-# aqui a gente ta chamando a função que cria o index.html, passando as letras disponíveis naquele dicionário letras que a gente criou lá em cima
-for letra in letras:
-    criar_index_html(letras.keys())
 
-criar_index_html(letras.keys())   
+# Chamada da função que cria o index.html, passando as letras disponíveis ao dicionário letras{} criado anteriormente
+for palavra, divisao, significado, fonte in listadepalavras:
+    criar_html_dicionario(palavra, divisao, significado, fonte)   
+criar_index_html(letras.keys())
