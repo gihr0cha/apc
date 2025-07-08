@@ -1,12 +1,18 @@
 # Função que lerá o arquivo csv onde serão adicionadas as palavras com seus significados
+import csv
+
+
 def ler_palavras(palavras):
     listadepalavras = []
+
     with open(palavras, "r", encoding="utf-8") as f:
-        linhas = f.readlines()
+        linhas = csv.reader(f)
+        next(linhas)  # Pula a primeira linha do CSV, que é o cabeçalho.
+        # Aqui, a variável linhas recebe o objeto csv.reader, que lê o arquivo CSV.
+
         # esse for lê as linhas do CSV e divide as palavras e os significados em tuplas.
-        for linha in linhas[1:]: # Começa no 1 e não no 0 porque a primeira linha é o cabeçalho.
+        for parte in linhas: # Começa no 1 e não no 0 porque a primeira linha é o cabeçalho.
             # aqui retira os espaços em branco e divide a linha em quatro partes, a palavra, divisão silábica, significado e fonte.
-            parte = linha.strip().split(",")
             if len(parte) == 4:
                 palavra = parte[0].strip()
                 divisao = parte[1].strip()
