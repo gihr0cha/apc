@@ -120,10 +120,10 @@ def criar_index_html(letras_disponiveis):
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="estilo.css">
-  <title>Dicionário de Termos do Meio Ambiente</title>
+  <title>Escolha a letra do seu termo</title>
 </head>
 <body>
-  <h1>Dicionário de Termos do Meio Ambiente</h1>
+  <h1>Escolha a letra do seu termo</h1>
   <div class="grid"> 
 '''
 # Ordenação de letras em ordem alfabética e atribuição das letras às suas variáveis para criação dos botões

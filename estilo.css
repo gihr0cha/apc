@@ -94,3 +94,37 @@ footer a {
 footer a:hover {
     text-decoration: underline;
 }
+.revela-letras {
+  background: linear-gradient(90deg, #D4A373 60%);
+  color: #000;
+  font-size: 1.3em;
+  padding: 18px 40px;
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0 4px 16px rgba(212,163,115,0.3);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  margin: 30px auto 20px auto;
+  display: block;
+  font-weight: bold;
+  letter-spacing: 1px;
+  outline: none;
+}
+
+.revela-letras:hover {
+  transform: scale(1.07);
+  box-shadow: 0 8px 24px rgba(212,163,115,0.4);
+  background: linear-gradient(#D4A373 100%);
+}
+.quadro-explicacao {
+  background: #faedcd;
+  border: 2px solid #D4A373;
+  border-radius: 18px;
+  padding: 24px 32px;
+  margin: 30px auto 35px auto;
+  max-width: 700px;
+  font-size: 1.1em;
+  color: #333;
+  box-shadow: 0 4px 16px rgba(212,163,115,0.10);
+  text-align: justify;
+}
