@@ -1,6 +1,6 @@
 # Dicionário de Termos do Meio Ambiente
 
-Este projeto é um dicionário digital elaborado para a disciplina de Algoritmo e Programação de Computadores (APC) da Universidade de Brasília, que reúne e explica os principais termos relacionados ao meio ambiente, sustentabilidade, ecologia e áreas afins. O objetivo é auxiliar estudantes, professores, pesquisadores e entusiastas a compreender melhor os conceitos fundamentais para a preservação ambiental.
+Este projeto é um dicionário digital elaborado para a disciplina de Algoritmos e Programação de Computadores (APC) do curso de Computação da Universidade de Brasília, que reúne e explica os principais termos relacionados ao meio ambiente, sustentabilidade, ecologia e áreas afins. O objetivo é auxiliar estudantes, professores, pesquisadores e entusiastas a compreender melhor os conceitos fundamentais para a preservação ambiental.
 
 ## Funcionalidades
 
