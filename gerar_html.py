@@ -1,7 +1,7 @@
-# Função que lerá o arquivo csv onde serão adicionadas as palavras com seus significados
+# Import da biblioteca csv para ler o arquivo CSV onde estão as palavras e seus significados
 import csv
 
-
+# Função que lerá o arquivo csv onde serão adicionadas as palavras com seus significados
 def ler_palavras(palavras):
     listadepalavras = []
 
@@ -120,10 +120,10 @@ def criar_index_html(letras_disponiveis):
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="estilo.css">
-  <title>Dicionário de Palavras</title>
+  <title>Dicionário de Termos do Meio Ambiente</title>
 </head>
 <body>
-  <h1>Dicionário de Palavras</h1>
+  <h1>Dicionário de Termos do Meio Ambiente</h1>
   <div class="grid"> 
 '''
 # Ordenação de letras em ordem alfabética e atribuição das letras às suas variáveis para criação dos botões
